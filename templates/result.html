@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 
 <title>Blockendance</title>
 
 <body class="blue-grey lighten-4">
-    <h5>
-        {{ result }}
-    </h5>
-    <br />
-    <button class="btn waves-effect waves-light" type="button" id="button" name="button">Go Back</button>
-    <script type="text/javascript">
-        function goBack() {
-            window.open("/", "_self");
-        }
-        var button = document.getElementById("button");
-        button.addEventListener("click", goBack);
-    </script>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper blue-grey darken-1">
+                <a href="#" class="brand-logo center">Blockchain Integrity</a>
+                <ul id="nav-mobile" class="left">
+                    <li><a href="/"><i class="material-icons left">home</i>Home</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Blockchain Verification Results</span>
+                        <h5>{{ result }}</h5>
+                    </div>
+                    <div class="card-action">
+                        <a class="btn waves-effect waves-light" href="/">
+                            <i class="material-icons left">home</i>Return to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>

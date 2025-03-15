@@ -5,36 +5,75 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 
 <title>Blockendance</title>
-{% if name %}
-<h1>Hello {{ name }}, enter attendance status</h1>
-{% else %}
-<h1>Hello, World!</h1>
-{% endif %}
 
 <body class="blue-grey lighten-4">
-
-    <form action="/" method="post">
-
-        {%  for i in range(1, number + 1) %}
-        <p>
-            {{ course }}-{{ year }}-{{ "%02d" %i }}: &emsp;
-            <label>
-                <input type="radio" name="roll_no{{ i }}" value="P">
-                <span>Present &emsp; </span>
-            </label>
-            <label>
-                <input type="radio" name="roll_no{{ i }}" value="A" checked="checked">
-                <span>Absent</span>
-            </label>
-            <br />
-            <br />
-        </p>
-        {% endfor %}
-        <br />
-        <br />
-        <br />
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-        </button>
-    </form>
+    <div class="container" style="width: 90%; max-width: 1200px;">
+        <nav>
+            <div class="nav-wrapper blue-grey darken-1">
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col s4 left-align">
+                        <a href="javascript:history.back()" class="btn-flat white-text" style="vertical-align: middle; display: inline-flex; align-items: center;">
+                            <i class="material-icons" style="margin-right: 8px;">arrow_back</i>
+                            BACK
+                        </a>
+                    </div>
+                    <div class="col s4 center-align">
+                        <span>Mark Attendance</span>
+                    </div>
+                    <div class="col s4 right-align">
+                        <!-- Empty div for spacing -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        {% if name %}
+        <h4 style="clear: both; margin-top: 1rem;">Hello {{ name }}, enter attendance status</h4>
+        {% else %}
+        <h4 style="clear: both; margin-top: 1rem;">Enter attendance status</h4>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ course }} | Date: {{ date }} | Session: {% if session %}{{ session }}{% else %}1{% endif %}</span>
+                        
+                        <form action="/" method="post">
+                            <div class="row">
+                                {%  for i in range(1, number + 1) %}
+                                <div class="col s12 m6 l4">
+                                    <p>
+                                        <strong>{{ course }}-{{ class }}-{{ "%02d" %i }}</strong>
+                                        <label>
+                                            <input type="radio" name="roll_no{{ i }}" value="P">
+                                            <span>Present</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="roll_no{{ i }}" value="A" checked="checked">
+                                            <span>Absent</span>
+                                        </label>
+                                    </p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col s6">
+                                    <a class="btn waves-effect waves-light red" href="javascript:history.back()">
+                                        <i class="material-icons left">arrow_back</i>Back
+                                    </a>
+                                </div>
+                                <div class="col s6 right-align">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                                        <i class="material-icons right">send</i>Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
